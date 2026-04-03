@@ -17,7 +17,7 @@ Aplicação Android desenvolvida em Kotlin com Jetpack Compose que monitoriza em
 Através do **ML Kit Face Detection** da Google, a app analisa continuamente a probabilidade de abertura de cada olho. Se os olhos permanecerem fechados durante mais de **2 segundos**, é emitido um alerta de sonolência.
 
 ### 🤕 Deteção de Inclinação da Cabeça
-O ângulo de inclinação da cabeça (eixo X) é monitorizado. Caso a cabeça caia para a frente mais de **20°**, sinal típico de microsono, o alerta é ativado de imediato, sem aguardar os 2 segundos.
+O ângulo de inclinação da cabeça (eixo X) é monitorizado. Caso a cabeça caia para a frente mais de 20°, sinal típico de microsono, o alerta é ativado após aguardar 2 segundos.
 
 ### 🔔 Sistema de Alertas
 Quando sonolência é detetada, a app ativa:
