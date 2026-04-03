@@ -99,6 +99,8 @@ fun EcraCamera(viewModel: SonolenciaViewModel, aoVoltar: () -> Unit) {
             aoAlterarAcelerometro = { x, y, z -> viewModel.aoAlterarAcelerometro(x, y, z) }
         )
     }
+    val temLuz = remember { gestorSensores.temSensorLuz() }
+    val temAcelerometro = remember { gestorSensores.temAcelerometro() }
 
     // Ecrã sempre ligado
     DisposableEffect(Unit) {
@@ -193,7 +195,9 @@ fun EcraCamera(viewModel: SonolenciaViewModel, aoVoltar: () -> Unit) {
             FilaInfoSensores(
                 luzBaixa = estado.luzBaixa,
                 nivelLuz = estado.nivelLuz,
-                emMovimento = estado.emMovimento
+                emMovimento = estado.emMovimento,
+                temSensorLuz = temLuz,
+                temAcelerometro = temAcelerometro
             )
         }
 
@@ -360,23 +364,38 @@ private fun IndicadorCabeca(angulo: Float, inclinada: Boolean) {
 }
 
 @Composable
-private fun FilaInfoSensores(luzBaixa: Boolean, nivelLuz: Float, emMovimento: Boolean) {
+private fun FilaInfoSensores(luzBaixa: Boolean, nivelLuz: Float, emMovimento: Boolean, temSensorLuz: Boolean, temAcelerometro: Boolean) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        if (nivelLuz >= 0) {
+        if (temSensorLuz) {
             ChipSensor(
                 rotulo = if (luzBaixa) "⚠️ Luz baixa (${nivelLuz.toInt()} lux)" else "💡 ${nivelLuz.toInt()} lux",
                 cor = if (luzBaixa) Color(0xFFFFA726) else Color(0xFF546E7A),
                 modifier = Modifier.weight(1f)
             )
+        } else {
+            ChipSensor(
+                rotulo = "💡 Sem sensor de luz",
+                cor = Color(0xFF455A64),
+                modifier = Modifier.weight(1f)
+            )
         }
-        ChipSensor(
-            rotulo = if (emMovimento) "🚗 Em movimento" else "🅿️ Parado",
-            cor = if (emMovimento) Color(0xFFEF5350) else Color(0xFF546E7A),
-            modifier = Modifier.weight(1f)
-        )
+
+        if (temAcelerometro) {
+            ChipSensor(
+                rotulo = if (emMovimento) "🚗 Em movimento" else "🅿️ Parado",
+                cor = if (emMovimento) Color(0xFFEF5350) else Color(0xFF546E7A),
+                modifier = Modifier.weight(1f)
+            )
+        } else {
+            ChipSensor(
+                rotulo = "📡 Sem acelerómetro",
+                cor = Color(0xFF455A64),
+                modifier = Modifier.weight(1f)
+            )
+        }
     }
 }
 
