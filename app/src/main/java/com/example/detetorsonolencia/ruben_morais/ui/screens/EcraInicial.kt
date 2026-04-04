@@ -82,7 +82,7 @@ fun EcraInicial(aoIniciarDeteccao: () -> Unit) {
             Spacer(modifier = Modifier.height(28.dp))
 
             Text(
-                text = "Detector de\nSonolência",
+                text = "Detetor de\nSonolência",
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White,
@@ -107,9 +107,9 @@ fun EcraInicial(aoIniciarDeteccao: () -> Unit) {
                     "📷  A câmara frontal monitoriza o teu rosto",
                     "👁️  O ML Kit analisa a probabilidade dos olhos estarem abertos",
                     "⏱️  Se os olhos ficarem fechados +2s, é emitido um alerta",
-                    "🤕  O sistema deteta quando a cabeça cai e emite alerta imediato",
+                    "🤕  O sistema deteta quando a cabeça cai e emite alerta",
                     "🔔  Vibração e som alertam-te imediatamente",
-                    "💡  O sensor de luz detecta ambientes escuros"
+                    "💡  O sensor de luz deteta ambientes escuros"
                 )
             )
 
@@ -126,7 +126,7 @@ fun EcraInicial(aoIniciarDeteccao: () -> Unit) {
                 )
             ) {
                 Text(
-                    text = "Iniciar Detecção",
+                    text = "Iniciar Deteção",
                     fontSize = 17.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = Color(0xFF0A0E1A)

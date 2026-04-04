@@ -34,11 +34,9 @@ class SonolenciaViewModel : ViewModel() {
     fun aoDetectarRosto(probOlhoEsq: Float, probOlhoDir: Float, anguloX: Float) {
         val probMediaOlhos = (probOlhoEsq + probOlhoDir) / 2f
         val olhosFechados = probMediaOlhos < limiarOlhoFechado
-        // anguloX negativo = cabeça a cair para a frente
         val cabecaInclinada = anguloX < -limiarInclinacaoCabeca
         val agora = System.currentTimeMillis()
 
-        // Sonolência ativa se olhos fechados >2s OU cabeça muito inclinada
         if (olhosFechados || cabecaInclinada) {
             if (inicioOlhosFechados == null) {
                 inicioOlhosFechados = agora
